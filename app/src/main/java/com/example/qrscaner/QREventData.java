@@ -2,7 +2,7 @@ package com.example.qrscaner;
 
 import java.sql.Date;
 
-public class QRData {
+public class QREventData {
     private String eventTitle;
     private String firstname;
     private String lastname;
@@ -10,7 +10,7 @@ public class QRData {
     private Date   meetingDate;
 
 
-    public QRData(String eventTitle, String firstname, String lastname, String email, Date meetingDate) {
+    public QREventData(String eventTitle, String firstname, String lastname, String email, Date meetingDate) {
         this.eventTitle = eventTitle;
         this.firstname = firstname;
         this.lastname = lastname;
