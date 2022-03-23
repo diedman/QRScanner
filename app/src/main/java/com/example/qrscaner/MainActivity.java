@@ -13,10 +13,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Camera;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.common.util.concurrent.ListenableFuture;
@@ -32,15 +36,23 @@ public class MainActivity extends AppCompatActivity {
 
     private final int SUSPENSION_TIME = 2000;
     PreviewView mPreviewView;
+    TextView dataViewLastname, dataViewFirstname, dataViewTitle;
     public boolean isProcess;
     ImageCapture imageCapture;
+    QRData qrData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         mPreviewView = findViewById(R.id.camera);
+        dataViewLastname = findViewById(R.id.dataLastname);
+        dataViewFirstname = findViewById(R.id.dataFirstname);
+        dataViewTitle = findViewById(R.id.dataView);
 
         if (allPermissionsGranted())
             startCamera();
@@ -71,9 +83,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //TODO код исполняемый после успешного сканирования
     public void qeCodeHandler(String qrCodeText){
-        Context context = this;
-        runOnUiThread(()-> Toast.makeText(context, qrCodeText, Toast.LENGTH_LONG).show());
+        GetDataTask getDataTask = new GetDataTask();
+        getDataTask.execute(qrCodeText);
 
         new Thread(()->{
             try {
@@ -84,6 +97,35 @@ public class MainActivity extends AppCompatActivity {
             isProcess = false;
         }).start();
     }
+
+    //TODO Загрузка данных из БД
+    class GetDataTask extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(String... qrStr) {
+            try {
+                qrData = DBCommunication.getQRData(qrStr[0]);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            dataViewTitle.setText(qrData.getEventTitle());
+            dataViewLastname.setText(qrData.getLastname());
+            dataViewFirstname.setText(qrData.getFirstname());
+
+        }
+    }
+
 
     void bindPreview(@NonNull ProcessCameraProvider cameraProvider){
         CameraSelector cameraSelector = new CameraSelector.Builder()
