@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
     TextView dataViewLastname, dataViewFirstname, dataViewTitle;
     public boolean isProcess;
     ImageCapture imageCapture;
-    QRData qrData;
+    QREventData qrEventData;
+    QRCoworkingData qrCoworkingData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //TODO код исполняемый после успешного сканирования
-    public void qeCodeHandler(String qrCodeText){
+    public void qrCodeHandler(String qrCodeText){
         GetDataTask getDataTask = new GetDataTask();
         getDataTask.execute(qrCodeText);
 
@@ -104,12 +105,15 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            qrEventData = null;
+            qrCoworkingData = null;
         }
 
         @Override
         protected Void doInBackground(String... qrStr) {
             try {
-                qrData = DBCommunication.getQRData(qrStr[0]);
+                qrEventData = DBCommunication.getQREventData(qrStr[0]);
+                qrCoworkingData = DBCommunication.getQRCoworkingData(qrStr[0]);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -119,10 +123,19 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            dataViewTitle.setText(qrData.getEventTitle());
-            dataViewLastname.setText(qrData.getLastname());
-            dataViewFirstname.setText(qrData.getFirstname());
-
+            if(qrEventData != null){
+                dataViewTitle.setText(qrEventData.getEventTitle());
+                dataViewLastname.setText(qrEventData.getLastname());
+                dataViewFirstname.setText(qrEventData.getFirstname());
+            }
+            else if(qrCoworkingData != null){
+                dataViewTitle.setText(R.string.coworking);
+                dataViewLastname.setText(qrCoworkingData.getLastname());
+                dataViewFirstname.setText(qrCoworkingData.getFirstname());
+            }
+            else {
+                dataViewTitle.setText(R.string.QRnotFound);
+            }
         }
     }
 

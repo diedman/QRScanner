@@ -55,7 +55,7 @@ public class QRCodeDecoder implements ImageAnalysis.Analyzer {
 
                     if (!((MainActivity) context).isProcess && url != null){
                         ((MainActivity) context).isProcess = true;
-                        ((MainActivity) context).qeCodeHandler(url);
+                        ((MainActivity) context).qrCodeHandler(url);
                     }
                 }
                 image.close();

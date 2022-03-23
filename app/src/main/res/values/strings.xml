@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">QRScaner</string>
+    <string name="coworking">Запись в коворкинг.</string>
+    <string name="QRnotFound">Такой qr код не был найден.</string>
 </resources>
