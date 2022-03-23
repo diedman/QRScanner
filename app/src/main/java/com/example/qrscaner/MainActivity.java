@@ -15,6 +15,7 @@ import androidx.lifecycle.LifecycleOwner;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Camera;
 import android.os.AsyncTask;
@@ -35,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
     private final String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.CAMERA"};
 
     private final int SUSPENSION_TIME = 2000;
-    PreviewView mPreviewView;
-    TextView dataViewLastname, dataViewFirstname, dataViewTitle;
     public boolean isProcess;
+    PreviewView mPreviewView;
+
     ImageCapture imageCapture;
     QREventData qrEventData;
     QRCoworkingData qrCoworkingData;
@@ -51,9 +52,6 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         mPreviewView = findViewById(R.id.camera);
-        dataViewLastname = findViewById(R.id.dataLastname);
-        dataViewFirstname = findViewById(R.id.dataFirstname);
-        dataViewTitle = findViewById(R.id.dataView);
 
         if (allPermissionsGranted())
             startCamera();
@@ -123,18 +121,19 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            Context context = MainActivity.this;
             if(qrEventData != null){
-                dataViewTitle.setText(qrEventData.getEventTitle());
-                dataViewLastname.setText(qrEventData.getLastname());
-                dataViewFirstname.setText(qrEventData.getFirstname());
+                Intent intent = new Intent(context, InfoActivity.class);
+                intent.putExtra(QREventData.class.getSimpleName(), qrEventData);
+                startActivity(intent);
             }
             else if(qrCoworkingData != null){
-                dataViewTitle.setText(R.string.coworking);
-                dataViewLastname.setText(qrCoworkingData.getLastname());
-                dataViewFirstname.setText(qrCoworkingData.getFirstname());
+                Intent intent = new Intent(context, InfoActivity.class);
+                intent.putExtra(QRCoworkingData.class.getSimpleName(), qrCoworkingData);
+                startActivity(intent);
             }
             else {
-                dataViewTitle.setText(R.string.QRnotFound);
+                runOnUiThread(()-> Toast.makeText(context, R.string.QRnotFound, Toast.LENGTH_SHORT).show());
             }
         }
     }

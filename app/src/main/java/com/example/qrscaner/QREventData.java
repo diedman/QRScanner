@@ -1,8 +1,9 @@
 package com.example.qrscaner;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class QREventData {
+public class QREventData implements Serializable {
     private String eventTitle;
     private String firstname;
     private String lastname;

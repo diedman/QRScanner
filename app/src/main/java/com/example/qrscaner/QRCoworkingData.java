@@ -1,8 +1,9 @@
 package com.example.qrscaner;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class QRCoworkingData {
+public class QRCoworkingData implements Serializable {
     private String spaceTitle;
     private String firstname;
     private String lastname;
