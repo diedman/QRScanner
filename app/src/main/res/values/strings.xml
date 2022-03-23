@@ -2,4 +2,7 @@
     <string name="app_name">QRScaner</string>
     <string name="coworking">Запись в коворкинг.</string>
     <string name="QRnotFound">Такой qr код не был найден.</string>
+    <string name="lastname">Фамилия:</string>
+    <string name="firstname">Имя:</string>
+    <string name="rescan">Пересканировать</string>
 </resources>
