@@ -56,7 +56,7 @@ public class DBCommunication {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                String spaceTitle       = rs.getString(1);
+                String spaceTitle           = rs.getString(1);
                 String firstname            = rs.getString(2);
                 String lastname             = rs.getString(3);
                 String email                = rs.getString(4);

@@ -5,4 +5,6 @@
     <string name="lastname">Фамилия:</string>
     <string name="firstname">Имя:</string>
     <string name="rescan">Пересканировать</string>
+    <string name="datetime">Дата и время:</string>
+    <string name="defaultTextViewText">TextView</string>
 </resources>

@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(QREventData.class.getSimpleName(), qrEventData);
                 startActivity(intent);
             }
-            else if(qrCoworkingData != null){
+            else if(qrCoworkingData != null) {
                 Intent intent = new Intent(context, InfoActivity.class);
                 intent.putExtra(QRCoworkingData.class.getSimpleName(), qrCoworkingData);
                 startActivity(intent);
