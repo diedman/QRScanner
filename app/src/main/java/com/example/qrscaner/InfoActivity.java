@@ -52,7 +52,7 @@ public class InfoActivity extends AppCompatActivity {
     }
 
     public void initFields(){
-        tvTittle    = findViewById(R.id.textViewTittle);
+        tvTittle    = findViewById(R.id.textViewTitle);
         tvLastname  = findViewById(R.id.textViewLastname);
         tvFirstname = findViewById(R.id.textViewFirstname);
         tvDateTime  = findViewById(R.id.textViewDateTime);

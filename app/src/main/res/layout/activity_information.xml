@@ -1,102 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="16dp">
+    android:background="@drawable/gradient_background"
+    android:orientation="vertical">
 
 
     <TextView
-        android:id="@+id/textViewTittle"
-        android:gravity="center"
-        android:textSize="24sp"
+        android:id="@+id/textViewTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/defaultTextViewText" />
+        android:layout_height="50dp"
+        android:autoSizeMaxTextSize="30sp"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeTextType="uniform"
+        android:background="@color/pink"
+        android:gravity="center"
+        android:text="Title"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="fill_parent"
+            android:id="@+id/textViewLastNameText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:textSize="18sp"
-            android:text="@string/lastname"/>
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeTextType="uniform"
+            android:text="@string/lastname"
+            android:textColor="@color/gray"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewLastname"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:layout_marginTop="10dp"
-            android:text="@string/defaultTextViewText"
-            android:layout_weight="1"/>
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeTextType="uniform"
+            android:text="Last Name"
+            android:textColor="@color/gray"
+            android:textSize="18sp" />
 
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_marginTop="10dp"
-            android:textSize="18sp"
-            android:layout_weight="1"
+            android:id="@+id/textViewFirstNameText"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/firstname" />
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeTextType="uniform"
+            android:text="@string/firstname"
+            android:textColor="@color/gray"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewFirstname"
-            android:layout_marginTop="10dp"
-            android:textSize="18sp"
-            android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/defaultTextViewText" />
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeTextType="uniform"
+            android:text="First Name"
+            android:textColor="@color/gray"
+            android:textSize="18sp" />
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/view_divider2"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/pink" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_marginTop="10dp"
-            android:textSize="18sp"
-            android:layout_weight="1"
+            android:id="@+id/textViewDateTimeText"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/datetime" />
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeTextType="uniform"
+            android:text="@string/datetime"
+            android:textColor="@color/gray"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewDateTime"
-            android:layout_marginTop="10dp"
-            android:textSize="18sp"
-            android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/defaultTextViewText" />
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeTextType="uniform"
+            android:text="Date Time"
+            android:textColor="@color/gray"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/btn_Rescan"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        android:autoSizeMaxTextSize="30sp"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeTextType="uniform"
         android:text="@string/rescan"
         android:textAllCaps="false"
         android:textSize="20sp" />
